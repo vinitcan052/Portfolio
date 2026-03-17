@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vinit — Python Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #f7f6f3;
+      --sidebar-bg: #1c1c1e;
+      --text: #1c1c1e;
+      --muted: #6b6b6b;
+      --accent: #2563eb;
+      --accent-light: #eff4ff;
+      --border: #e2e0db;
+      --white: #ffffff;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; overflow: hidden; }
+    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; display: flex; }
+
+    /* SIDEBAR */
+    .sidebar {
+      width: 25%; min-width: 220px; max-width: 280px;
+      height: 100vh; background: var(--sidebar-bg);
+      display: flex; flex-direction: column;
+      padding: 40px 28px 32px;
+      position: fixed; top: 0; left: 0; z-index: 10; overflow: hidden;
+    }
+    .sidebar::after {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 3px; background: var(--accent);
+    }
+    .avatar {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: #2a2a2c; border: 2px solid #333;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 18px; overflow: hidden; flex-shrink: 0;
+    }
+    .avatar svg { width: 38px; height: 38px; color: #555; }
+    .s-name { font-family: 'Lora', serif; font-size: 22px; font-weight: 600; color: #fff; line-height: 1.2; margin-bottom: 5px; }
+    .s-role { font-size: 11px; font-weight: 500; color: #6b9fff; letter-spacing: 0.5px; margin-bottom: 20px; }
+    .s-div { height: 1px; background: #2a2a2c; margin-bottom: 18px; }
+    .s-contacts { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px; }
+    .s-contacts li a, .s-contacts li span {
+      display: flex; align-items: center; gap: 9px;
+      font-size: 11px; color: #999; text-decoration: none;
+      transition: color 0.2s; word-break: break-all; line-height: 1.4;
+    }
+    .s-contacts li a:hover { color: #6b9fff; }
+    .s-contacts li svg { width: 13px; height: 13px; flex-shrink: 0; color: #555; }
+    .download-btn {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%; padding: 10px 0; margin-bottom: 18px;
+      background: #1e3a5f; color: #6b9fff;
+      font-size: 12px; font-weight: 500; border-radius: 7px;
+      border: 1px solid #2a4a7a; text-decoration: none;
+      font-family: 'DM Sans', sans-serif; transition: background 0.15s, border-color 0.15s; cursor: pointer;
+    }
+    .download-btn:hover { background: #243f6a; border-color: #6b9fff; }
+    .download-btn svg { width: 14px; height: 14px; }
+    .nav-label { font-size: 9px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: #444; margin-bottom: 10px; }
+    nav { display: flex; flex-direction: column; gap: 1px; }
+    .nav-btn {
+      display: flex; align-items: center; gap: 10px;
+      padding: 9px 12px; border-radius: 6px;
+      font-size: 13px; font-weight: 400; color: #888;
+      cursor: pointer; border: none; background: none;
+      width: 100%; text-align: left;
+      transition: background 0.15s, color 0.15s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .nav-btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+    .nav-btn:hover { background: #252527; color: #ccc; }
+    .nav-btn.active { background: #252527; color: #fff; }
+    .nav-btn.active svg { color: #6b9fff; }
+
+    /* MAIN */
+    .main { margin-left: min(25%, 280px); flex: 1; height: 100vh; overflow-y: auto; background: var(--bg); }
+    .main::-webkit-scrollbar { width: 5px; }
+    .main::-webkit-scrollbar-track { background: transparent; }
+    .main::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+    .page { display: none; min-height: 100vh; padding: 60px 60px 80px; animation: fadeUp 0.3s ease; }
+    .page.active { display: block; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* SHARED */
+    .eyebrow { font-size: 10px; font-weight: 500; letter-spacing: 2.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+    h1 { font-family: 'Lora', serif; font-size: clamp(32px, 4vw, 48px); font-weight: 600; color: var(--text); line-height: 1.15; letter-spacing: -0.5px; margin-bottom: 32px; }
+    h1 em { font-style: italic; color: var(--accent); }
+    .rule { height: 1px; background: var(--border); margin-bottom: 36px; }
+
+    /* HOME */
+    .home-greeting { font-size: 13px; font-weight: 500; color: var(--muted); letter-spacing: 1px; margin-bottom: 10px; }
+    .home-name { font-family: 'Lora', serif; font-size: clamp(42px, 6vw, 64px); font-weight: 600; color: var(--text); line-height: 1.05; letter-spacing: -1px; margin-bottom: 8px; }
+    .home-title { font-size: 15px; font-weight: 400; color: var(--accent); margin-bottom: 28px; }
+    .home-bio { font-size: 15px; line-height: 1.8; color: var(--muted); max-width: 520px; margin-bottom: 36px; }
+    .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: 7px; padding: 11px 22px; font-size: 13px; font-weight: 500; border-radius: 6px; cursor: pointer; border: none; font-family: 'DM Sans', sans-serif; transition: all 0.15s; }
+    .btn-fill { background: var(--accent); color: #fff; }
+    .btn-fill:hover { background: #1d4fd8; }
+    .btn-ghost { background: var(--white); color: var(--text); border: 1px solid var(--border); }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+    .home-stats { display: flex; margin-top: 52px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--white); max-width: 420px; }
+    .stat { flex: 1; padding: 22px 20px; text-align: center; border-right: 1px solid var(--border); }
+    .stat:last-child { border-right: none; }
+    .stat-n { font-family: 'Lora', serif; font-size: 28px; font-weight: 600; color: var(--text); line-height: 1; margin-bottom: 5px; }
+    .stat-l { font-size: 10px; font-weight: 500; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
+
+    /* ABOUT */
+    .about-text { font-size: 15px; line-height: 1.85; color: #4a4a4a; max-width: 580px; margin-bottom: 20px; }
+    .about-text strong { color: var(--text); font-weight: 500; }
+    .lang-row { display: flex; gap: 10px; margin-top: 32px; }
+    .lang-tag { padding: 7px 16px; background: var(--white); border: 1px solid var(--border); border-radius: 100px; font-size: 12px; color: var(--muted); }
+
+    /* SKILLS */
+    .skill-block { margin-bottom: 32px; }
+    .skill-block-title { font-size: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+    .chip-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { padding: 7px 15px; background: var(--white); border: 1px solid var(--border); border-radius: 6px; font-size: 13px; font-weight: 400; color: var(--text); transition: border-color 0.15s, color 0.15s; }
+    .chip:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* PROJECTS */
+    .proj-list { display: flex; flex-direction: column; gap: 20px; }
+    .proj-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 28px 30px; transition: border-color 0.15s, box-shadow 0.15s; }
+    .proj-card:hover { border-color: var(--accent); box-shadow: 0 2px 16px rgba(37,99,235,0.07); }
+    .proj-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+    .proj-name { font-family: 'Lora', serif; font-size: 19px; font-weight: 600; color: var(--text); }
+    .proj-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .ptag { font-size: 11px; font-weight: 500; color: var(--accent); background: var(--accent-light); border: 1px solid #bdd0fc; padding: 3px 10px; border-radius: 4px; }
+    .proj-desc { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 14px; }
+    .proj-points { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .proj-points li { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: #555; line-height: 1.6; }
+    .proj-points li::before { content: '·'; color: var(--accent); font-weight: 700; font-size: 18px; line-height: 1.2; flex-shrink: 0; }
+    .proj-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; font-size: 12px; font-weight: 500; color: var(--accent); text-decoration: none; border: 1px solid #bdd0fc; background: var(--accent-light); padding: 6px 14px; border-radius: 5px; transition: background 0.15s; }
+    .proj-link:hover { background: #dce8ff; }
+    .proj-link svg { width: 12px; height: 12px; }
+
+    /* EDUCATION */
+    .edu-list { display: flex; flex-direction: column; }
+    .edu-row { display: flex; gap: 20px; padding-bottom: 32px; position: relative; }
+    .edu-row::after { content: ''; position: absolute; left: 15px; top: 32px; width: 1px; bottom: 0; background: var(--border); }
+    .edu-row:last-child::after { display: none; }
+    .edu-node { flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--accent); background: var(--accent-light); display: flex; align-items: center; justify-content: center; margin-top: 2px; }
+    .edu-node svg { width: 13px; height: 13px; color: var(--accent); }
+    .edu-degree { font-family: 'Lora', serif; font-size: 17px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+    .edu-school { font-size: 13px; color: var(--accent); font-weight: 500; margin-bottom: 3px; }
+    .edu-year { font-size: 11px; color: var(--muted); letter-spacing: 0.5px; }
+
+    /* CONTACT */
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+    .c-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 20px; display: flex; align-items: center; gap: 14px; text-decoration: none; transition: border-color 0.15s, box-shadow 0.15s; }
+    .c-card:hover { border-color: var(--accent); box-shadow: 0 2px 12px rgba(37,99,235,0.07); }
+    .c-ico { width: 36px; height: 36px; border-radius: 8px; background: var(--accent-light); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--accent); }
+    .c-ico svg { width: 16px; height: 16px; }
+    .c-type { font-size: 9px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); }
+    .c-val { font-size: 12px; color: var(--text); word-break: break-all; margin-top: 2px; }
+
+    @media (max-width: 680px) {
+      html, body { height: auto; overflow: auto; }
+      body { flex-direction: column; }
+      .sidebar { position: relative; width: 100%; max-width: 100%; height: auto; }
+      .main { margin-left: 0; height: auto; overflow: visible; }
+      .page { padding: 40px 24px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+  <aside class="sidebar">
+    <div class="avatar">
+      <img src="photo.jpg" style="width:100%;height:100%;object-fit:cover;">
+    </div>
+    <div class="s-name">Vinit</div>
+    <div class="s-role">Backend Developer · Python, FastAPI, MySQL</div>
+    <div class="s-div"></div>
+    <ul class="s-contacts">
+      <li>
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <span id="em"></span>
+        </span>
+      </li>
+      <li>
+        <a href="tel:+917827266732">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.7 12.27 19.79 19.79 0 0 1 1.61 3.68 2 2 0 0 1 3.59 1.5h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.5 16.92z"/></svg>
+          +91 78272 66732
+        </a>
+      </li>
+      <li>
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          New Delhi, India
+        </span>
+      </li>
+      <li>
+        <a href="https://github.com/vinitcan052" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          github.com/vinitcan052
+        </a>
+      </li>
+      <li>
+        <a href="https://www.linkedin.com/in/vinit-singh-7bb46b36a" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          linkedin.com/in/vinit-singh
+        </a>
+      </li>
+    </ul>
+    <div class="s-div"></div>
+    <a href="Resume.pdf" download="Vinit_Resume.pdf" class="download-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download Resume
+    </a>
+    <div class="nav-label">Menu</div>
+    <nav>
+      <button class="nav-btn active" onclick="show('home',this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Home
+      </button>
+      <button class="nav-btn" onclick="show('about',this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        About Me
+      </button>
+      <button class="nav-btn" onclick="show('skills',this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3z"/></svg>
+        Skills
+      </button>
+      <button class="nav-btn" onclick="show('projects',this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        Projects
+      </button>
+      <button class="nav-btn" onclick="show('education',this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        Education
+      </button>
+      <button class="nav-btn" onclick="show('contact',this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Contact
+      </button>
+    </nav>
+  </aside>
+
+  <main class="main">
+
+    <!-- HOME -->
+    <section id="home" class="page active">
+      <div class="home-greeting">Hello, I'm</div>
+      <div class="home-name">Vinit</div>
+      <div class="home-title">Backend Developer · Python, FastAPI, MySQL</div>
+      <p class="home-bio">Motivated Python developer with a strong foundation in programming and logical problem-solving. Passionate about writing clean code and contributing to real-world software solutions in a growth-oriented organization.</p>
+      <div class="btn-row">
+        <button class="btn btn-fill" onclick="show('projects',null)">View Projects</button>
+        <button class="btn btn-ghost" onclick="show('contact',null)">Get In Touch</button>
+      </div>
+      <div class="home-stats">
+        <div class="stat"><div class="stat-n">3</div><div class="stat-l">Projects</div></div>
+        <div class="stat"><div class="stat-n">5+</div><div class="stat-l">Skills</div></div>
+        <div class="stat"><div class="stat-n">MCA</div><div class="stat-l">Pursuing</div></div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="page">
+      <div class="eyebrow">About</div>
+      <h1>Who I <em>Am</em></h1>
+      <div class="rule"></div>
+      <p class="about-text">I'm <strong>Vinit</strong>, a <strong>Backend Developer</strong> based in New Delhi specialising in Python, FastAPI, and MySQL. I have a solid foundation in programming and a passion for logical problem-solving. I enjoy learning new technologies and building clean, efficient software that solves real problems.</p>
+      <p class="about-text">Currently pursuing my <strong>Master of Computer Applications (MCA)</strong>, I've been sharpening my skills by building <strong>API backends</strong> using FastAPI and MySQL — designing RESTful endpoints, relational database schemas, and clean backend logic for real-world applications.</p>
+      <div class="lang-row">
+        <span class="lang-tag">&#127468;&#127463; English — Fluent</span>
+        <span class="lang-tag">&#127470;&#127475; Hindi — Native</span>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="page">
+      <div class="eyebrow">Skills</div>
+      <h1>My <em>Toolkit</em></h1>
+      <div class="rule"></div>
+      <div class="skill-block">
+        <div class="skill-block-title">Languages</div>
+        <div class="chip-row">
+          <div class="chip">Python</div>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-title">Frameworks</div>
+        <div class="chip-row">
+          <div class="chip">FastAPI</div>
+          <div class="chip">Flask</div>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-title">Databases</div>
+        <div class="chip-row">
+          <div class="chip">MySQL · RDBMS</div>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-title">Concepts</div>
+        <div class="chip-row">
+          <div class="chip">REST API</div>
+          <div class="chip">OOP</div>
+          <div class="chip">CRUD Operations</div>
+          <div class="chip">Relational Schema Design</div>
+          <div class="chip">SQL Aggregates</div>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-title">Tools</div>
+        <div class="chip-row">
+          <div class="chip">Git</div>
+          <div class="chip">Advanced Excel + AI</div>
+          <div class="chip">Canva</div>
+          <div class="chip">ChatGPT</div>
+          <div class="chip">Emergent</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="page">
+      <div class="eyebrow">Projects</div>
+      <h1>What I've <em>Built</em></h1>
+      <div class="rule"></div>
+      <div class="proj-list">
+        <div class="proj-card">
+          <div class="proj-header">
+            <div class="proj-name">Banking System API</div>
+            <div class="proj-tags"><span class="ptag">Python</span><span class="ptag">FastAPI</span><span class="ptag">MySQL</span></div>
+          </div>
+          <p class="proj-desc">A RESTful API for full banking account management and transaction processing, built with FastAPI and backed by a MySQL database.</p>
+          <ul class="proj-points">
+            <li>Developed RESTful API for account management and transaction processing using FastAPI</li>
+            <li>Implemented CRUD operations using FastAPI and MySQL (RDBMS)</li>
+            <li>Built secure deposit/withdrawal logic with validation and error handling</li>
+            <li>Designed relational database schema with tables, relationships, and constraints in MySQL</li>
+            <li>Developed and integrated frontend interface using AI-assisted development with FastAPI backend APIs</li>
+            <li>Used Git for version control and project management</li>
+          </ul>
+        </div>
+        <div class="proj-card">
+          <div class="proj-header">
+            <div class="proj-name">CLI Inventory Management System</div>
+            <div class="proj-tags"><span class="ptag">Python</span><span class="ptag">MySQL</span></div>
+          </div>
+          <p class="proj-desc">A relational inventory and sales management system built in the terminal with full reporting capabilities.</p>
+          <ul class="proj-points">
+            <li>Implemented CRUD operations for products and sales records</li>
+            <li>Designed relational schema with foreign keys and joins</li>
+            <li>Built transactional stock update and sales processing logic</li>
+            <li>Generated inventory and sales reports using SQL aggregates</li>
+          </ul>
+        </div>
+        <div class="proj-card">
+          <div class="proj-header">
+            <div class="proj-name">CLI Restaurant Management System</div>
+            <div class="proj-tags"><span class="ptag">Python</span><span class="ptag">MySQL</span></div>
+          </div>
+          <p class="proj-desc">A command-line restaurant management application handling everything from stock and menu to orders — all backed by a MySQL database.</p>
+          <ul class="proj-points">
+            <li>Stock management — add and view stocked ingredients and items</li>
+            <li>Menu management — set and view the restaurant menu</li>
+            <li>Full order lifecycle — place, view, update, and delete orders</li>
+            <li>Integrated MySQL database for persistent data storage across all modules</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" class="page">
+      <div class="eyebrow">Education</div>
+      <h1>My <em>Background</em></h1>
+      <div class="rule"></div>
+      <div class="edu-list">
+        <div class="edu-row">
+          <div class="edu-node">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          </div>
+          <div>
+            <div class="edu-degree">Master of Computer Applications (MCA)</div>
+            <div class="edu-year">2023 — Present · Pursuing</div>
+          </div>
+        </div>
+        <div class="edu-row">
+          <div class="edu-node">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          </div>
+          <div>
+            <div class="edu-degree">Bachelor of Arts (B.A)</div>
+            <div class="edu-year">2018 — 2022 · Completed</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="page">
+      <div class="eyebrow">Contact</div>
+      <h1>Get In <em>Touch</em></h1>
+      <div class="rule"></div>
+      <div class="contact-grid">
+        <a id="email-link" href="#" class="c-card">
+          <div class="c-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
+          <div><div class="c-type">Email</div><div class="c-val" id="email-val"></div></div>
+        </a>
+        <a href="tel:+917827266732" class="c-card">
+          <div class="c-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.7 12.27 19.79 19.79 0 0 1 1.61 3.68 2 2 0 0 1 3.59 1.5h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.5 16.92z"/></svg></div>
+          <div><div class="c-type">Phone</div><div class="c-val">+91 78272 66732</div></div>
+        </a>
+        <a href="https://github.com/vinitcan052" target="_blank" class="c-card">
+          <div class="c-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></div>
+          <div><div class="c-type">GitHub</div><div class="c-val">github.com/vinitcan052</div></div>
+        </a>
+        <a href="https://www.linkedin.com/in/vinit-singh-7bb46b36a" target="_blank" class="c-card">
+          <div class="c-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+          <div><div class="c-type">LinkedIn</div><div class="c-val">linkedin.com/in/vinit-singh</div></div>
+        </a>
+        <div class="c-card">
+          <div class="c-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><div class="c-type">Location</div><div class="c-val">New Delhi, India</div></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // Set email via JS to prevent Cloudflare interception
+    (function() {
+      var u = 'vinitcan0025';
+      var d = 'gmail.com';
+      var e = u + '@' + d;
+      var el = document.getElementById('em');
+      if (el) el.textContent = e;
+      var link = document.getElementById('email-link');
+      if (link) link.href = 'mailto:' + e;
+      var val = document.getElementById('email-val');
+      if (val) val.textContent = e;
+    })();
+
+    function show(id, btn) {
+      document.querySelectorAll('.page').forEach(function(s) { s.classList.remove('active'); });
+      document.querySelectorAll('.nav-btn').forEach(function(b) { b.classList.remove('active'); });
+      document.getElementById(id).classList.add('active');
+      if (btn) {
+        btn.classList.add('active');
+      } else {
+        document.querySelectorAll('.nav-btn').forEach(function(b) {
+          if (b.getAttribute('onclick') && b.getAttribute('onclick').indexOf("'" + id + "'") !== -1) {
+            b.classList.add('active');
+          }
+        });
+      }
+      document.querySelector('.main').scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
