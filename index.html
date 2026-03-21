@@ -254,7 +254,7 @@
         <button class="btn btn-ghost" onclick="show('contact',null)">Get In Touch</button>
       </div>
       <div class="home-stats">
-        <div class="stat"><div class="stat-n">3</div><div class="stat-l">Projects</div></div>
+        <div class="stat"><div class="stat-n">4</div><div class="stat-l">Projects</div></div>
         <div class="stat"><div class="stat-n">5+</div><div class="stat-l">Skills</div></div>
         <div class="stat"><div class="stat-n">MCA</div><div class="stat-l">Pursuing</div></div>
       </div>
@@ -305,6 +305,8 @@
           <div class="chip">CRUD Operations</div>
           <div class="chip">Relational Schema Design</div>
           <div class="chip">SQL Aggregates</div>
+          <div class="chip">SQLAlchemy ORM</div>
+          <div class="chip">JWT Authentication</div>
         </div>
       </div>
       <div class="skill-block">
@@ -313,7 +315,6 @@
           <div class="chip">Git</div>
           <div class="chip">Advanced Excel + AI</div>
           <div class="chip">Canva</div>
-          <div class="chip">ChatGPT</div>
           <div class="chip">Emergent</div>
         </div>
       </div>
@@ -362,6 +363,25 @@
         </div>
         <div class="proj-card">
           <div class="proj-header">
+            <div class="proj-name">Inventory Management System</div>
+            <div class="proj-tags"><span class="ptag">Python</span><span class="ptag">Flask</span><span class="ptag">MySQL</span><span class="ptag">SQLAlchemy</span></div>
+          </div>
+          <p class="proj-desc">A RESTful Inventory Management API built with Flask, featuring JWT authentication, product management, and stock tracking — deployed with Gunicorn.</p>
+          <ul class="proj-points">
+            <li>Built RESTful API with Flask using a modular Blueprint structure (auth, products, inventory)</li>
+            <li>Implemented JWT-based authentication with secure register and login endpoints</li>
+            <li>Designed product and inventory models using SQLAlchemy ORM with MySQL</li>
+            <li>Developed stock management — add stock, purchase items, and view transaction history per product</li>
+            <li>Secured all inventory and product routes with JWT middleware</li>
+            <li>Configured CORS, environment variables via dotenv, and deployed using Gunicorn</li>
+          </ul>
+          <a href="https://github.com/vinitcan052/inventory-management-flask" target="_blank" class="proj-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            View on GitHub
+          </a>
+        </div>
+        <div class="proj-card">
+          <div class="proj-header">
             <div class="proj-name">CLI Restaurant Management System</div>
             <div class="proj-tags"><span class="ptag">Python</span><span class="ptag">MySQL</span></div>
           </div>
@@ -372,10 +392,6 @@
             <li>Full order lifecycle — place, view, update, and delete orders</li>
             <li>Integrated MySQL database for persistent data storage across all modules</li>
           </ul>
-          <a href="https://github.com/vinitcan052/food-order-management-system" target="_blank" class="proj-link">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-            View on GitHub
-          </a>
         </div>
       </div>
     </section>
