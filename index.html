@@ -28,49 +28,21 @@
       padding: 40px 28px 32px;
       position: fixed; top: 0; left: 0; z-index: 10; overflow: hidden;
     }
-    .sidebar::after {
-      content: ''; position: absolute; top: 0; left: 0; right: 0;
-      height: 3px; background: var(--accent);
-    }
-    .avatar {
-      width: 72px; height: 72px; border-radius: 50%;
-      background: #2a2a2c; border: 2px solid #333;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 18px; overflow: hidden; flex-shrink: 0;
-    }
-    .avatar svg { width: 38px; height: 38px; color: #555; }
+    .sidebar::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); }
+    .avatar { width: 72px; height: 72px; border-radius: 50%; background: #2a2a2c; border: 2px solid #333; display: flex; align-items: center; justify-content: center; margin-bottom: 18px; overflow: hidden; flex-shrink: 0; }
     .s-name { font-family: 'Lora', serif; font-size: 22px; font-weight: 600; color: #fff; line-height: 1.2; margin-bottom: 5px; }
     .s-role { font-size: 10px; font-weight: 500; color: #6b9fff; letter-spacing: 0.3px; margin-bottom: 20px; line-height: 1.5; }
     .s-div { height: 1px; background: #2a2a2c; margin-bottom: 18px; }
     .s-contacts { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px; }
-    .s-contacts li a, .s-contacts li span {
-      display: flex; align-items: center; gap: 9px;
-      font-size: 11px; color: #999; text-decoration: none;
-      transition: color 0.2s; word-break: break-all; line-height: 1.4;
-    }
+    .s-contacts li a, .s-contacts li span { display: flex; align-items: center; gap: 9px; font-size: 11px; color: #999; text-decoration: none; transition: color 0.2s; word-break: break-all; line-height: 1.4; }
     .s-contacts li a:hover { color: #6b9fff; }
     .s-contacts li svg { width: 13px; height: 13px; flex-shrink: 0; color: #555; }
-    .download-btn {
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-      width: 100%; padding: 10px 0; margin-bottom: 18px;
-      background: #1e3a5f; color: #6b9fff;
-      font-size: 12px; font-weight: 500; border-radius: 7px;
-      border: 1px solid #2a4a7a; text-decoration: none;
-      font-family: 'DM Sans', sans-serif; transition: background 0.15s, border-color 0.15s; cursor: pointer;
-    }
+    .download-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 10px 0; margin-bottom: 18px; background: #1e3a5f; color: #6b9fff; font-size: 12px; font-weight: 500; border-radius: 7px; border: 1px solid #2a4a7a; text-decoration: none; font-family: 'DM Sans', sans-serif; transition: background 0.15s, border-color 0.15s; cursor: pointer; }
     .download-btn:hover { background: #243f6a; border-color: #6b9fff; }
     .download-btn svg { width: 14px; height: 14px; }
     .nav-label { font-size: 9px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: #444; margin-bottom: 10px; }
     nav { display: flex; flex-direction: column; gap: 1px; }
-    .nav-btn {
-      display: flex; align-items: center; gap: 10px;
-      padding: 9px 12px; border-radius: 6px;
-      font-size: 13px; font-weight: 400; color: #888;
-      cursor: pointer; border: none; background: none;
-      width: 100%; text-align: left;
-      transition: background 0.15s, color 0.15s;
-      font-family: 'DM Sans', sans-serif;
-    }
+    .nav-btn { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 6px; font-size: 13px; font-weight: 400; color: #888; cursor: pointer; border: none; background: none; width: 100%; text-align: left; transition: background 0.15s, color 0.15s; font-family: 'DM Sans', sans-serif; }
     .nav-btn svg { width: 15px; height: 15px; flex-shrink: 0; }
     .nav-btn:hover { background: #252527; color: #ccc; }
     .nav-btn.active { background: #252527; color: #fff; }
@@ -102,11 +74,11 @@
     .btn-fill:hover { background: #1d4fd8; }
     .btn-ghost { background: var(--white); color: var(--text); border: 1px solid var(--border); }
     .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
-    .home-stats { display: flex; margin-top: 52px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--white); max-width: 420px; }
-    .stat { flex: 1; padding: 22px 20px; text-align: center; border-right: 1px solid var(--border); }
+    .home-stats { display: flex; margin-top: 52px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--white); max-width: 500px; }
+    .stat { flex: 1; padding: 22px 16px; text-align: center; border-right: 1px solid var(--border); }
     .stat:last-child { border-right: none; }
-    .stat-n { font-family: 'Lora', serif; font-size: 28px; font-weight: 600; color: var(--text); line-height: 1; margin-bottom: 5px; }
-    .stat-l { font-size: 10px; font-weight: 500; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
+    .stat-n { font-family: 'Lora', serif; font-size: 26px; font-weight: 600; color: var(--text); line-height: 1; margin-bottom: 5px; }
+    .stat-l { font-size: 9px; font-weight: 500; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
 
     /* ABOUT */
     .about-text { font-size: 15px; line-height: 1.85; color: #4a4a4a; max-width: 580px; margin-bottom: 20px; }
@@ -122,7 +94,7 @@
     .chip:hover { border-color: var(--accent); color: var(--accent); }
 
     /* PROJECTS */
-    .proj-list { display: flex; flex-direction: column; gap: 20px; }
+    .proj-list { display: flex; flex-direction: column; gap: 24px; }
     .proj-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 28px 30px; transition: border-color 0.15s, box-shadow 0.15s; }
     .proj-card:hover { border-color: var(--accent); box-shadow: 0 2px 16px rgba(37,99,235,0.07); }
     .proj-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; }
@@ -140,6 +112,18 @@
     .proj-link.live { background: #f0fdf4; border-color: #86efac; color: #16a34a; }
     .proj-link.live:hover { background: #dcfce7; }
 
+    /* DASHBOARD SCREENSHOTS */
+    .screenshots { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; border-radius: 8px; overflow: hidden; }
+    .screenshots img { width: 100%; height: auto; display: block; border-radius: 6px; border: 1px solid var(--border); cursor: pointer; transition: opacity 0.15s; }
+    .screenshots img:hover { opacity: 0.88; }
+    .screenshots.single { grid-template-columns: 1fr; }
+
+    /* LIGHTBOX */
+    .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 999; align-items: center; justify-content: center; padding: 24px; }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 90vh; border-radius: 8px; object-fit: contain; }
+    .lightbox-close { position: absolute; top: 20px; right: 24px; color: #fff; font-size: 28px; cursor: pointer; background: none; border: none; line-height: 1; }
+
     /* EDUCATION */
     .edu-list { display: flex; flex-direction: column; }
     .edu-row { display: flex; gap: 20px; padding-bottom: 32px; position: relative; }
@@ -149,6 +133,19 @@
     .edu-node svg { width: 13px; height: 13px; color: var(--accent); }
     .edu-degree { font-family: 'Lora', serif; font-size: 17px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
     .edu-year { font-size: 11px; color: var(--muted); letter-spacing: 0.5px; }
+
+    /* CERTIFICATIONS */
+    .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
+    .cert-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 24px; display: flex; flex-direction: column; gap: 14px; transition: border-color 0.15s, box-shadow 0.15s; }
+    .cert-card:hover { border-color: var(--accent); box-shadow: 0 2px 12px rgba(37,99,235,0.07); }
+    .cert-badge { width: 44px; height: 44px; border-radius: 10px; background: var(--accent-light); border: 1px solid #bdd0fc; display: flex; align-items: center; justify-content: center; color: var(--accent); flex-shrink: 0; }
+    .cert-badge svg { width: 22px; height: 22px; }
+    .cert-issuer { font-size: 10px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
+    .cert-name { font-family: 'Lora', serif; font-size: 16px; font-weight: 600; color: var(--text); line-height: 1.3; }
+    .cert-meta { font-size: 11px; color: var(--muted); }
+    .cert-link { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; color: var(--accent); text-decoration: none; border: 1px solid #bdd0fc; background: var(--accent-light); padding: 6px 14px; border-radius: 5px; transition: background 0.15s; width: fit-content; }
+    .cert-link:hover { background: #dce8ff; }
+    .cert-link svg { width: 12px; height: 12px; }
 
     /* CONTACT */
     .contact-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
@@ -165,10 +162,17 @@
       .sidebar { position: relative; width: 100%; max-width: 100%; height: auto; }
       .main { margin-left: 0; height: auto; overflow: visible; }
       .page { padding: 40px 24px 60px; }
+      .screenshots { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <img id="lightbox-img" src="" alt="Dashboard Preview"/>
+  </div>
 
   <aside class="sidebar">
     <div class="avatar">
@@ -236,6 +240,10 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
         Education
       </button>
+      <button class="nav-btn" onclick="show('certifications',this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+        Certifications
+      </button>
       <button class="nav-btn" onclick="show('contact',this)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         Contact
@@ -250,14 +258,15 @@
       <div class="home-greeting">Hello, I'm</div>
       <div class="home-name">Vinit</div>
       <div class="home-title">Python Developer · Flask, FastAPI, Power BI, SQL</div>
-      <p class="home-bio">Python Developer specializing in FastAPI, Flask, Docker, and PostgreSQL. Experienced in building and deploying production-grade systems with a focus on API design, data consistency, and scalable backend architecture.</p>
+      <p class="home-bio">Python Developer specializing in FastAPI, Flask, Docker, and PostgreSQL. Experienced in building and deploying production-grade systems with a focus on API design, data consistency, and scalable backend architecture. Also skilled in Power BI dashboards and data analytics.</p>
       <div class="btn-row">
         <button class="btn btn-fill" onclick="show('projects',null)">View Projects</button>
         <button class="btn btn-ghost" onclick="show('contact',null)">Get In Touch</button>
       </div>
       <div class="home-stats">
-        <div class="stat"><div class="stat-n">4</div><div class="stat-l">Projects</div></div>
+        <div class="stat"><div class="stat-n">6</div><div class="stat-l">Projects</div></div>
         <div class="stat"><div class="stat-n">5+</div><div class="stat-l">Skills</div></div>
+        <div class="stat"><div class="stat-n">2</div><div class="stat-l">Certs</div></div>
         <div class="stat"><div class="stat-n">MCA</div><div class="stat-l">Pursuing</div></div>
       </div>
     </section>
@@ -267,8 +276,8 @@
       <div class="eyebrow">About</div>
       <h1>Who I <em>Am</em></h1>
       <div class="rule"></div>
-      <p class="about-text">I'm <strong>Vinit</strong>, a <strong>Python Developer</strong> based in New Delhi, specialising in FastAPI, Flask, Docker, and PostgreSQL. I focus on building and deploying production-grade API backends with clean architecture, data consistency, and real-world reliability.</p>
-      <p class="about-text">Currently pursuing my <strong>Master of Computer Applications (MCA)</strong>, I've been building full-stack systems — designing RESTful APIs, handling ACID transactions, managing authentication, and solving real deployment challenges with Docker and cloud hosting.</p>
+      <p class="about-text">I'm <strong>Vinit</strong>, a <strong>Python Developer</strong> based in New Delhi, specialising in FastAPI, Flask, Docker, and PostgreSQL. I build production-grade API backends with clean architecture, ACID-compliant transaction handling, and real-world deployment experience.</p>
+      <p class="about-text">Beyond backend development, I'm also skilled in <strong>Data Analytics</strong> — building interactive Power BI dashboards and turning raw data into actionable business insights. Currently pursuing my <strong>Master of Computer Applications (MCA)</strong>.</p>
       <div class="lang-row">
         <span class="lang-tag">&#127468;&#127463; English — Fluent</span>
         <span class="lang-tag">&#127470;&#127475; Hindi — Native</span>
@@ -282,64 +291,35 @@
       <div class="rule"></div>
       <div class="skill-block">
         <div class="skill-block-title">Languages</div>
-        <div class="chip-row">
-          <div class="chip">Python</div>
-        </div>
+        <div class="chip-row"><div class="chip">Python</div><div class="chip">SQL</div></div>
       </div>
       <div class="skill-block">
         <div class="skill-block-title">Frameworks</div>
-        <div class="chip-row">
-          <div class="chip">FastAPI</div>
-          <div class="chip">Flask</div>
-        </div>
+        <div class="chip-row"><div class="chip">FastAPI</div><div class="chip">Flask</div></div>
       </div>
       <div class="skill-block">
         <div class="skill-block-title">Databases</div>
-        <div class="chip-row">
-          <div class="chip">MySQL</div>
-          <div class="chip">PostgreSQL</div>
-        </div>
+        <div class="chip-row"><div class="chip">MySQL</div><div class="chip">PostgreSQL</div></div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-title">Data & BI</div>
+        <div class="chip-row"><div class="chip">Power BI</div><div class="chip">MS Excel</div><div class="chip">Tableau</div><div class="chip">Pandas</div><div class="chip">NumPy</div><div class="chip">Power Query</div><div class="chip">DAX</div></div>
       </div>
       <div class="skill-block">
         <div class="skill-block-title">Core Concepts</div>
-        <div class="chip-row">
-          <div class="chip">REST API Design</div>
-          <div class="chip">Database Design</div>
-          <div class="chip">JWT Authentication</div>
-          <div class="chip">Transaction Management (ACID)</div>
-          <div class="chip">Backend Architecture</div>
-          <div class="chip">SQLAlchemy ORM</div>
-          <div class="chip">CRUD Operations</div>
-        </div>
+        <div class="chip-row"><div class="chip">REST API Design</div><div class="chip">Database Design</div><div class="chip">JWT Authentication</div><div class="chip">ACID Transactions</div><div class="chip">Backend Architecture</div><div class="chip">SQLAlchemy ORM</div><div class="chip">Data Modeling</div><div class="chip">KPI Reporting</div><div class="chip">Dashboard Development</div></div>
       </div>
       <div class="skill-block">
         <div class="skill-block-title">Tools &amp; Practices</div>
-        <div class="chip-row">
-          <div class="chip">Git (GitHub)</div>
-          <div class="chip">Docker</div>
-          <div class="chip">Power BI</div>
-          <div class="chip">Excel</div>
-          <div class="chip">Canva</div>
-          <div class="chip">Emergent</div>
-        </div>
+        <div class="chip-row"><div class="chip">Git (GitHub)</div><div class="chip">Docker</div><div class="chip">Canva</div><div class="chip">Emergent</div></div>
       </div>
       <div class="skill-block">
         <div class="skill-block-title">SDLC</div>
-        <div class="chip-row">
-          <div class="chip">Design</div>
-          <div class="chip">Development</div>
-          <div class="chip">Testing</div>
-          <div class="chip">Deployment</div>
-        </div>
+        <div class="chip-row"><div class="chip">Design</div><div class="chip">Development</div><div class="chip">Testing</div><div class="chip">Deployment</div></div>
       </div>
       <div class="skill-block">
         <div class="skill-block-title">Soft Skills</div>
-        <div class="chip-row">
-          <div class="chip">Problem Solving</div>
-          <div class="chip">Logical Thinking</div>
-          <div class="chip">Adaptability</div>
-          <div class="chip">Communication</div>
-        </div>
+        <div class="chip-row"><div class="chip">Problem Solving</div><div class="chip">Logical Thinking</div><div class="chip">Adaptability</div><div class="chip">Communication</div></div>
       </div>
     </section>
 
@@ -350,15 +330,11 @@
       <div class="rule"></div>
       <div class="proj-list">
 
-        <!-- Project 1: Banking System API -->
+        <!-- 1: Banking System API -->
         <div class="proj-card">
           <div class="proj-header">
             <div class="proj-name">Banking System API</div>
-            <div class="proj-tags">
-              <span class="ptag">Python</span>
-              <span class="ptag">FastAPI</span>
-              <span class="ptag">MySQL</span>
-            </div>
+            <div class="proj-tags"><span class="ptag">Python</span><span class="ptag">FastAPI</span><span class="ptag">MySQL</span></div>
           </div>
           <p class="proj-desc">A transaction-safe banking system API supporting full account management and financial operations, built with FastAPI and MySQL.</p>
           <ul class="proj-points">
@@ -377,16 +353,11 @@
           </div>
         </div>
 
-        <!-- Project 2: Inventory Management (Full-Stack, Deployed) -->
+        <!-- 2: Inventory Management (Full-Stack, Deployed) -->
         <div class="proj-card">
           <div class="proj-header">
             <div class="proj-name">Inventory Management System</div>
-            <div class="proj-tags">
-              <span class="ptag">Python</span>
-              <span class="ptag">Flask</span>
-              <span class="ptag">Docker</span>
-              <span class="ptag">PostgreSQL</span>
-            </div>
+            <div class="proj-tags"><span class="ptag">Python</span><span class="ptag">Flask</span><span class="ptag">Docker</span><span class="ptag">PostgreSQL</span></div>
           </div>
           <p class="proj-desc">A full-stack, deployed inventory management system with authentication, product tracking, and stock operations — containerized with Docker and live on Render.</p>
           <ul class="proj-points">
@@ -411,14 +382,63 @@
           </div>
         </div>
 
-        <!-- Project 3: CLI Inventory Management -->
+        <!-- 3: Road Accident Dashboard -->
+        <div class="proj-card">
+          <div class="proj-header">
+            <div class="proj-name">Road Accident Analysis Dashboard</div>
+            <div class="proj-tags"><span class="ptag">Power BI</span><span class="ptag">DAX</span><span class="ptag">Data Analytics</span></div>
+          </div>
+          <p class="proj-desc">A multi-page interactive Power BI dashboard analyzing road accident severity, hotspots, weather conditions, vehicle involvement, and driver demographics across India.</p>
+          <ul class="proj-points">
+            <li>Developed a multi-page interactive dashboard using Microsoft Power BI to analyze accident severity, hotspots, weather conditions, vehicle involvement, and driver demographics</li>
+            <li>Designed dynamic KPI cards to track total accidents (3,000), casualties (15,198), fatalities (7,366), and severity distribution</li>
+            <li>Implemented DAX measures, calculated columns, and custom aggregations for peak accident timing, age-group analysis, and vehicle-wise distribution</li>
+            <li>Built interactive features including slicers, tooltips, navigation buttons, cross-filtering, and drill interactions</li>
+            <li>Applied geospatial mapping and dashboard storytelling to transform raw accident data into actionable BI insights</li>
+          </ul>
+          <div class="screenshots">
+            <img src="road1.png" alt="Road Accident Dashboard Page 1" onclick="openLightbox(this.src)" title="Click to enlarge"/>
+            <img src="road2.png" alt="Road Accident Dashboard Page 2" onclick="openLightbox(this.src)" title="Click to enlarge"/>
+          </div>
+          <div class="proj-links">
+            <a href="https://github.com/vinitcan052/road-accident-analysis-powerbi-dashboard" target="_blank" class="proj-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              View on GitHub
+            </a>
+          </div>
+        </div>
+
+        <!-- 4: Employee Attrition Dashboard -->
+        <div class="proj-card">
+          <div class="proj-header">
+            <div class="proj-name">Employee Attrition Analysis Dashboard</div>
+            <div class="proj-tags"><span class="ptag">Power BI</span><span class="ptag">DAX</span><span class="ptag">HR Analytics</span></div>
+          </div>
+          <p class="proj-desc">An interactive Power BI dashboard analyzing employee attrition trends, job satisfaction, salary distribution, and workforce demographics for HR insights.</p>
+          <ul class="proj-points">
+            <li>Developed an interactive Employee Attrition dashboard in Power BI to analyze employee turnover trends, job satisfaction, salary distribution, and workforce demographics</li>
+            <li>Created dynamic KPI cards to monitor attrition rate (19.67%), employee count (5,042), average salary, and department-wise attrition</li>
+            <li>Implemented DAX measures, calculated columns, and interactive filters to identify key factors influencing employee attrition and retention</li>
+            <li>Designed HR-focused visualizations for age groups, education background, overtime impact, job roles, and performance ratings</li>
+            <li>Utilized data modeling, dashboard storytelling, and interactive reporting to transform workforce data into actionable HR insights</li>
+          </ul>
+          <div class="screenshots">
+            <img src="emp1.png" alt="Employee Attrition Dashboard Page 1" onclick="openLightbox(this.src)" title="Click to enlarge"/>
+            <img src="emp2.png" alt="Employee Attrition Dashboard Page 2" onclick="openLightbox(this.src)" title="Click to enlarge"/>
+          </div>
+          <div class="proj-links">
+            <a href="https://github.com/vinitcan052/Emp-attrition-analysis-powerbi-dashboard" target="_blank" class="proj-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              View on GitHub
+            </a>
+          </div>
+        </div>
+
+        <!-- 5: CLI Inventory -->
         <div class="proj-card">
           <div class="proj-header">
             <div class="proj-name">CLI Inventory Management System</div>
-            <div class="proj-tags">
-              <span class="ptag">Python</span>
-              <span class="ptag">MySQL</span>
-            </div>
+            <div class="proj-tags"><span class="ptag">Python</span><span class="ptag">MySQL</span></div>
           </div>
           <p class="proj-desc">A relational inventory and sales management system built in the terminal with full reporting capabilities.</p>
           <ul class="proj-points">
@@ -429,14 +449,11 @@
           </ul>
         </div>
 
-        <!-- Project 4: CLI Restaurant Management -->
+        <!-- 6: CLI Restaurant -->
         <div class="proj-card">
           <div class="proj-header">
             <div class="proj-name">CLI Restaurant Management System</div>
-            <div class="proj-tags">
-              <span class="ptag">Python</span>
-              <span class="ptag">MySQL</span>
-            </div>
+            <div class="proj-tags"><span class="ptag">Python</span><span class="ptag">MySQL</span></div>
           </div>
           <p class="proj-desc">A command-line restaurant management application handling everything from stock and menu to orders — all backed by a MySQL database.</p>
           <ul class="proj-points">
@@ -477,6 +494,46 @@
       </div>
     </section>
 
+    <!-- CERTIFICATIONS -->
+    <section id="certifications" class="page">
+      <div class="eyebrow">Certifications</div>
+      <h1>My <em>Credentials</em></h1>
+      <div class="rule"></div>
+      <div class="cert-grid">
+
+        <div class="cert-card">
+          <div class="cert-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+          </div>
+          <div>
+            <div class="cert-issuer">EY &amp; Microsoft</div>
+            <div class="cert-name">AI Skills Passport</div>
+            <div class="cert-meta">Certificate of Completion</div>
+          </div>
+          <a href="cert_ey_microsoft.pdf" target="_blank" class="cert-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View Certificate
+          </a>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+          </div>
+          <div>
+            <div class="cert-issuer">Meta · INDIAai · Nasscom</div>
+            <div class="cert-name">LLM For Young Developers</div>
+            <div class="cert-meta">Foundational Course · Apr 2026</div>
+          </div>
+          <a href="cert_meta.pdf" target="_blank" class="cert-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View Certificate
+          </a>
+        </div>
+
+      </div>
+    </section>
+
     <!-- CONTACT -->
     <section id="contact" class="page">
       <div class="eyebrow">Contact</div>
@@ -514,7 +571,7 @@
 
   <script>
     (function() {
-      var u = 'vinitcan052';
+      var u = 'vinitcan0025';
       var d = 'gmail.com';
       var e = u + '@' + d;
       var el = document.getElementById('em');
@@ -539,6 +596,15 @@
         });
       }
       document.querySelector('.main').scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').classList.add('open');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
     }
   </script>
 </body>
